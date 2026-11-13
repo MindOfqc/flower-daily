@@ -86,10 +86,15 @@ onUnmounted(() => { clearInterval(pollTimer); clearInterval(cdTimer); });
           <div v-else-if="!messages.length" class="chat-empty">
             <span class="e" v-html="icon('tea')"></span>茶水间还没人说话，来当第一位吧
           </div>
-          <div v-for="m in messages" :key="m.id" class="chat-msg" :class="{ mine: m.userId === auth.user?.id }">
+          <div v-for="m in messages" :key="m.id" class="chat-msg"
+               :class="{ mine: m.userId === auth.user?.id, admin: m.isAdmin }">
             <Avatar :a="m.avatar" :size="30" />
             <div class="cb">
-              <div class="cm-meta"><b>{{ m.nickname }}</b><span>{{ fmtTime(m.createdAt) }}</span></div>
+              <div class="cm-meta">
+                <b>{{ m.nickname }}</b>
+                <span v-if="m.isAdmin" class="cm-badge">编辑部</span>
+                <span>{{ fmtTime(m.createdAt) }}</span>
+              </div>
               <div class="cm-text">{{ m.content }}</div>
             </div>
           </div>

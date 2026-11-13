@@ -419,10 +419,11 @@ async function chatList(env, url) {
   let limit = 100;
   if (limitRaw && /^\d+$/.test(limitRaw)) limit = Math.min(200, Math.max(1, Number(limitRaw)));
   const result = await env.DB.prepare(
-    "SELECT id, user_id, nickname, avatar, content, created_at FROM fd_chat_messages ORDER BY created_at DESC LIMIT ?",
+    "SELECT m.id, m.user_id, m.nickname, m.avatar, m.content, m.created_at, u.email AS email, u.is_admin AS is_admin FROM fd_chat_messages m LEFT JOIN fd_users u ON u.id = m.user_id ORDER BY m.created_at DESC LIMIT ?",
   )
     .bind(limit)
     .all();
+  const admins = adminEmails(env);
   const messages = (result.results || []).reverse().map((r) => ({
     id: r.id,
     userId: r.user_id,
@@ -430,6 +431,7 @@ async function chatList(env, url) {
     avatar: r.avatar || "",
     content: r.content,
     createdAt: r.created_at,
+    isAdmin: Number(r.is_admin) === 1 || admins.has(String(r.email || "").toLowerCase()),
   }));
   return json({ messages, now: new Date().toISOString() });
 }
@@ -457,6 +459,7 @@ async function chatCreate(request, env) {
     avatar: row?.avatar || "",
     content,
     createdAt: new Date().toISOString(),
+    isAdmin: !!auth.isAdmin,
   };
   await env.DB.prepare("INSERT INTO fd_chat_messages (id, user_id, nickname, avatar, content, created_at) VALUES (?, ?, ?, ?, ?, ?)")
     .bind(msg.id, msg.userId, msg.nickname, msg.avatar, msg.content, msg.createdAt)
