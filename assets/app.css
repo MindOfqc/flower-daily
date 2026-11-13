@@ -157,7 +157,7 @@ input,textarea,select{font-family:inherit;font-size:14px;color:var(--ink)}
 .masthead .rule{display:flex;align-items:center;gap:12px;margin-top:13px}
 .masthead .rule i{flex:1;height:1px;background:var(--line-strong)}
 .masthead .rule b{font-size:11.5px;color:var(--orange-deep);letter-spacing:.18em;font-weight:700;white-space:nowrap}
-.masthead .bouquet{position:absolute;right:6px;top:34px;width:102px;transform:rotate(5deg);mix-blend-mode:multiply;pointer-events:none;opacity:.75}
+.masthead .bouquet{position:absolute;right:6px;top:50px;width:102px;transform:rotate(5deg);mix-blend-mode:multiply;pointer-events:none;opacity:.75}
 .masthead .stamp-corner{position:absolute;left:14px;top:48px;width:58px;height:70px;border:2px dashed var(--orange);
   border-radius:6px;transform:rotate(-7deg);display:grid;place-items:center;background:rgba(255,253,246,.75);
   box-shadow:0 2px 6px rgba(107,87,60,.12);font-size:26px}
@@ -335,31 +335,31 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 @keyframes ddPop{0%{transform:scale(1)}45%{transform:scale(1.28) rotate(-7deg)}100%{transform:scale(1.12) rotate(3deg)}}
 @keyframes ddFlutter{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.7)}}
 @keyframes ddBeat{0%,100%{transform:scale(1)}30%{transform:scale(1.24)}60%{transform:scale(1.08)}}
-/* 左半屏 */
-.dd-cloud{top:124px;left:10.5%;width:92px;color:#8fa8bd;opacity:.65;--r:0deg;animation:ddFloat 10s ease-in-out infinite}
-.dd-berry{top:216px;left:15%;width:40px;opacity:.85;--r:-6deg;animation:ddSway 8.5s ease-in-out infinite}
-.dd-leaf{top:262px;left:12%;width:32px;color:#5f8f52;opacity:.7;--r:24deg;animation:ddSway 7s ease-in-out infinite}
-.dd-daisy{top:33%;left:4%;width:56px;color:#8a6f4d;animation:ddSpin 48s linear infinite}
-.dd-balloon{top:45%;left:9%;width:42px;opacity:.8;--r:-4deg;animation:ddDrift 8s ease-in-out infinite}
-.dd-bee{top:57%;left:3%;width:52px;color:#8a6f4d;--r:-8deg;animation:ddBob 5.5s ease-in-out infinite}
-.dd-flowerpot{top:67%;left:8%;width:46px;opacity:.8;--r:2deg;animation:ddSway 8s ease-in-out infinite}
-.dd-heart{top:77%;left:14%;width:28px;color:#d17f18;opacity:.7;--r:-8deg;animation:ddBob 6s ease-in-out infinite}
-.dd-acorn{bottom:150px;left:13%;width:32px;opacity:.8;--r:8deg;animation:ddBob 7s ease-in-out infinite}
-.dd-tulip{bottom:104px;left:2.5%;width:52px;color:#5f8f52;--r:6deg;animation:ddSway 6.5s ease-in-out infinite}
-.dd-snail{bottom:38px;left:9%;width:52px;color:#8a6f4d;animation:ddCrawl 18s ease-in-out infinite}
-.dd-ladybug{bottom:225px;left:5%;width:34px;opacity:.85;animation:ddCrawl 14s ease-in-out infinite}
-/* 右半屏 */
-.dd-sun{top:42px;right:5%;width:76px;color:#d17f18;opacity:.85;--r:8deg;animation:ddFloat 8s ease-in-out infinite}
-.dd-butterfly{top:196px;right:8%;width:58px;color:#d17f18;--r:12deg;animation:ddBob 6.5s ease-in-out infinite reverse}
-.dd-plane{top:20%;right:13%;width:50px;opacity:.8;--r:6deg;animation:ddDrift 9s ease-in-out infinite}
-.dd-rainbow{top:30%;right:3.5%;width:80px;opacity:.75;--r:0deg;animation:ddSway 9s ease-in-out infinite}
-.dd-kite{top:43%;right:10%;width:48px;opacity:.85;--r:10deg;animation:ddSway 7s ease-in-out infinite}
-.dd-sparkle{top:56%;right:4%;width:46px;color:#d17f18;animation:ddTwinkle 3.4s ease-in-out infinite}
-.dd-sprig{top:65%;right:5%;width:56px;color:#5f8f52;--r:-12deg;animation:ddSway 7.5s ease-in-out infinite}
-.dd-clover{top:73%;right:12.5%;width:36px;opacity:.8;--r:-6deg;animation:ddSway 6s ease-in-out infinite}
-.dd-stars{bottom:238px;right:15.5%;width:56px;animation:ddTwinkle 3s ease-in-out infinite}
-.dd-mushroom{bottom:150px;right:13.5%;width:46px;color:#d17f18;--r:-4deg;animation:ddSway 9s ease-in-out infinite}
-.dd-grass{bottom:56px;right:16.5%;width:60px;color:#5f8f52;opacity:.7;--r:0deg;animation:ddSway 5.5s ease-in-out infinite}
+/* 左半屏（水平锚定在版面外侧，窄屏也不会压到卡片） */
+.dd-cloud{top:124px;left:min(10.5%,calc(50% - 604px - 92px));width:92px;color:#8fa8bd;opacity:.65;--r:0deg;animation:ddFloat 10s ease-in-out infinite}
+.dd-berry{top:216px;left:min(15%,calc(50% - 604px - 40px));width:40px;opacity:.85;--r:-6deg;animation:ddSway 8.5s ease-in-out infinite}
+.dd-leaf{top:262px;left:min(12%,calc(50% - 604px - 32px));width:32px;color:#5f8f52;opacity:.7;--r:24deg;animation:ddSway 7s ease-in-out infinite}
+.dd-daisy{top:33%;left:min(4%,calc(50% - 604px - 56px));width:56px;color:#8a6f4d;animation:ddSpin 48s linear infinite}
+.dd-balloon{top:45%;left:min(9%,calc(50% - 604px - 42px));width:42px;opacity:.8;--r:-4deg;animation:ddDrift 8s ease-in-out infinite}
+.dd-bee{top:57%;left:min(3%,calc(50% - 604px - 52px));width:52px;color:#8a6f4d;--r:-8deg;animation:ddBob 5.5s ease-in-out infinite}
+.dd-flowerpot{top:67%;left:min(8%,calc(50% - 604px - 46px));width:46px;opacity:.8;--r:2deg;animation:ddSway 8s ease-in-out infinite}
+.dd-heart{top:77%;left:min(14%,calc(50% - 604px - 28px));width:28px;color:#d17f18;opacity:.7;--r:-8deg;animation:ddBob 6s ease-in-out infinite}
+.dd-acorn{bottom:150px;left:min(13%,calc(50% - 604px - 32px));width:32px;opacity:.8;--r:8deg;animation:ddBob 7s ease-in-out infinite}
+.dd-tulip{bottom:104px;left:min(2.5%,calc(50% - 604px - 52px));width:52px;color:#5f8f52;--r:6deg;animation:ddSway 6.5s ease-in-out infinite}
+.dd-snail{bottom:38px;left:min(9%,calc(50% - 604px - 52px));width:52px;color:#8a6f4d;animation:ddCrawl 18s ease-in-out infinite}
+.dd-ladybug{bottom:225px;left:min(5%,calc(50% - 604px - 34px));width:34px;opacity:.85;animation:ddCrawl 14s ease-in-out infinite}
+/* 右半屏（同上，始终留在版面右侧留白内） */
+.dd-sun{top:42px;right:min(5%,calc(50% - 604px - 76px));width:76px;color:#d17f18;opacity:.85;--r:8deg;animation:ddFloat 8s ease-in-out infinite}
+.dd-butterfly{top:196px;right:min(8%,calc(50% - 604px - 58px));width:58px;color:#d17f18;--r:12deg;animation:ddBob 6.5s ease-in-out infinite reverse}
+.dd-plane{top:20%;right:min(13%,calc(50% - 604px - 50px));width:50px;opacity:.8;--r:6deg;animation:ddDrift 9s ease-in-out infinite}
+.dd-rainbow{top:30%;right:min(3.5%,calc(50% - 604px - 80px));width:80px;opacity:.75;--r:0deg;animation:ddSway 9s ease-in-out infinite}
+.dd-kite{top:43%;right:min(10%,calc(50% - 604px - 48px));width:48px;opacity:.85;--r:10deg;animation:ddSway 7s ease-in-out infinite}
+.dd-sparkle{top:56%;right:min(4%,calc(50% - 604px - 46px));width:46px;color:#d17f18;animation:ddTwinkle 3.4s ease-in-out infinite}
+.dd-sprig{top:65%;right:min(5%,calc(50% - 604px - 56px));width:56px;color:#5f8f52;--r:-12deg;animation:ddSway 7.5s ease-in-out infinite}
+.dd-clover{top:73%;right:min(12.5%,calc(50% - 604px - 36px));width:36px;opacity:.8;--r:-6deg;animation:ddSway 6s ease-in-out infinite}
+.dd-stars{bottom:238px;right:min(15.5%,calc(50% - 604px - 56px));width:56px;animation:ddTwinkle 3s ease-in-out infinite}
+.dd-mushroom{bottom:150px;right:min(13.5%,calc(50% - 604px - 46px));width:46px;color:#d17f18;--r:-4deg;animation:ddSway 9s ease-in-out infinite}
+.dd-grass{bottom:56px;right:min(16.5%,calc(50% - 604px - 60px));width:60px;color:#5f8f52;opacity:.7;--r:0deg;animation:ddSway 5.5s ease-in-out infinite}
 @keyframes ddFloat{0%,100%{transform:rotate(var(--r,0deg)) translateY(0)}50%{transform:rotate(var(--r,0deg)) translateY(-9px)}}
 @keyframes ddBob{0%,100%{transform:rotate(var(--r,0deg)) translateY(0)}50%{transform:rotate(calc(var(--r,0deg) + 5deg)) translateY(-11px)}}
 @keyframes ddTwinkle{0%,100%{opacity:.5;transform:scale(.9) rotate(-6deg)}50%{opacity:.9;transform:scale(1.06) rotate(-6deg)}}
@@ -367,7 +367,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 @keyframes ddDrift{0%,100%{transform:rotate(var(--r,0deg)) translate(0,0)}50%{transform:rotate(var(--r,0deg)) translate(6px,-14px)}}
 @keyframes ddCrawl{0%,100%{transform:translateX(0)}50%{transform:translateX(12px)}}
 @keyframes ddSpin{to{transform:rotate(360deg)}}
-@media (max-width:1300px){.doodle{display:none}}
+@media (max-width:1390px){.doodle{display:none}}
 
 /* 每日一句 */
 .daily-quote{text-align:center;font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink-soft);padding:20px 20px 6px}
@@ -561,7 +561,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 .ava-dot .ava-icn .icn{width:62%;height:62%}
 
 /* ---- 桌面右上角操作区：贴纸按钮组 ---- */
-.top-actions{position:absolute;top:16px;right:20px;z-index:30;display:flex;align-items:center;gap:11px}
+.top-actions{position:absolute;top:36px;right:170px;z-index:30;display:flex;align-items:center;gap:11px}
 .ta-btn{position:relative;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
   background:var(--card);border:1.5px solid var(--line-strong);color:var(--ink-soft);
   box-shadow:2px 3px 0 rgba(107,87,60,.14);transition:transform .16s, box-shadow .16s, color .15s}
