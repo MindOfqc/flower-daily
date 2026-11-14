@@ -88,11 +88,22 @@ onUnmounted(() => { clearInterval(pollTimer); clearInterval(cdTimer); });
           </div>
           <div v-for="m in messages" :key="m.id" class="chat-msg"
                :class="{ mine: m.userId === auth.user?.id, admin: m.isAdmin }">
-            <Avatar :a="m.avatar" :size="30" />
+            <span class="cm-ava">
+              <Avatar :a="m.avatar" :size="30" />
+              <i v-if="m.isAdmin" class="cm-crown" aria-hidden="true">
+                <svg viewBox="0 0 24 18">
+                  <path d="M3.2 15.4 2.3 6.6l4.6 3.3 4.8-7 4.9 7 4.6-3.4-.9 8.9z" />
+                  <circle cx="2.4" cy="5.3" r="1.7" />
+                  <circle cx="11.8" cy="2" r="1.8" />
+                  <circle cx="21.3" cy="5.1" r="1.7" />
+                  <path class="band" d="M4 13.1h16.2" />
+                </svg>
+              </i>
+            </span>
             <div class="cb">
               <div class="cm-meta">
-                <b>{{ m.nickname }}</b>
                 <span v-if="m.isAdmin" class="cm-badge">编辑部</span>
+                <b>{{ m.nickname }}</b>
                 <span>{{ fmtTime(m.createdAt) }}</span>
               </div>
               <div class="cm-text">{{ m.content }}</div>

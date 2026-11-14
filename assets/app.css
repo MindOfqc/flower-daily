@@ -648,7 +648,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 .chat-x{margin-left:auto;font-size:22px;line-height:1;color:var(--ink-faint);padding:2px 8px}
 .chat-x:hover{color:var(--danger)}
 .chat-sub{font-size:11.5px;color:var(--ink-faint);margin:8px 0 10px}
-.chat-list{flex:1;overflow-y:auto;padding:4px 4px 10px;display:flex;flex-direction:column;gap:12px}
+.chat-list{flex:1;overflow-y:auto;padding:14px 10px 10px;display:flex;flex-direction:column;gap:12px}
 .chat-empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:34px 10px}
 .chat-empty .e{font-size:30px;display:block;margin-bottom:8px}
 .chat-msg{display:flex;gap:10px;align-items:flex-start}
@@ -660,13 +660,41 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 .cm-text{background:var(--card-2);border:1.5px solid var(--line-strong);border-radius:4px 14px 14px 14px;
   padding:8px 12px;font-size:13.5px;white-space:pre-wrap;word-break:break-word}
 .chat-msg.mine .cm-text{background:var(--green-soft);border-color:var(--green);border-radius:14px 4px 14px 14px}
-/* ---- 管理员（编辑部）发言：金边头像 + 印章徽章 + 描边气泡 ---- */
-.cm-badge{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.1em;line-height:1.6;
-  padding:1px 7px 0;border-radius:99px;color:#fff;background:var(--orange-deep);
-  transform:rotate(-2deg);box-shadow:0 1px 0 rgba(107,87,60,.28)}
-.chat-msg.admin .ava-dot{border-color:var(--orange-deep);box-shadow:0 0 0 3px var(--orange-soft)}
-.chat-msg.admin .cm-meta b{color:var(--orange-deep)}
-.chat-msg.admin .cm-text{border-color:var(--orange);background:var(--orange-soft)}
+/* ---- 管理员（编辑部）发言：印章徽章 + 桂冠头像 + 描边气泡 ---- */
+.cm-badge{position:relative;display:inline-block;overflow:hidden;font-size:10.5px;font-weight:900;
+  letter-spacing:.12em;line-height:1.7;padding:2px 9px 1px;border-radius:99px;color:#fff;
+  background:linear-gradient(135deg,var(--orange) 0%,var(--orange-deep) 62%,#b9640f 100%);
+  border:1px solid #b9640f;transform:rotate(-3deg);text-shadow:0 1px 0 rgba(107,87,60,.35);
+  outline:1px dashed rgba(255,255,255,.5);outline-offset:-3px;
+  box-shadow:0 1px 0 rgba(107,87,60,.3),0 0 0 2px rgba(240,154,51,.16),0 0 10px rgba(240,154,51,.35);
+  animation:stampIn .52s cubic-bezier(.2,1.5,.4,1) both}
+.cm-badge::after{content:"";position:absolute;inset:0;transform:translateX(-120%) skewX(-18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent);
+  animation:badgeShine 4.2s ease-in-out 1.1s infinite}
+.cm-ava{position:relative;display:block;flex:none}
+.chat-msg.admin .cm-ava::before{content:"";position:absolute;inset:-6px;border:1.5px dashed var(--orange);
+  border-radius:50%;opacity:.8;animation:haloSpin 16s linear infinite}
+.chat-msg.admin .ava-dot{border:2px solid var(--orange-deep);
+  box-shadow:0 0 0 3px var(--orange-soft),0 0 0 4.5px var(--orange)}
+.chat-msg.admin .cm-meta b{color:var(--orange-deep);font-weight:800}
+.chat-msg.admin .cm-text{border:2px solid var(--orange);background:var(--orange-soft);
+  box-shadow:2px 2px 0 rgba(217,127,24,.14)}
+.cm-crown{position:absolute;top:-10px;right:-8px;width:21px;height:16px;pointer-events:none;z-index:1;
+  filter:drop-shadow(0 1px 0 rgba(107,87,60,.4));
+  transform-origin:50% 100%;animation:crownBob 3.4s ease-in-out infinite}
+.cm-crown svg{display:block;width:100%;height:100%;overflow:visible}
+.cm-crown path{fill:#f6c453;stroke:#8a5a12;stroke-width:1.4;stroke-linejoin:round}
+.cm-crown circle{fill:#ffe9b8;stroke:#8a5a12;stroke-width:1.2}
+.cm-crown .band{fill:none;stroke:#8a5a12;stroke-width:1.1;stroke-linecap:round;opacity:.7}
+@keyframes stampIn{0%{transform:rotate(-16deg) scale(1.85);opacity:0}
+  55%{transform:rotate(-1deg) scale(.92);opacity:1}100%{transform:rotate(-3deg) scale(1);opacity:1}}
+@keyframes badgeShine{0%,62%{transform:translateX(-120%) skewX(-18deg)}
+  86%,100%{transform:translateX(220%) skewX(-18deg)}}
+@keyframes crownBob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-2px) rotate(4deg)}}
+@keyframes haloSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){
+  .cm-badge,.cm-badge::after,.cm-crown,.chat-msg.admin .cm-ava::before{animation:none}
+}
 .chat-input{display:flex;gap:8px;border-top:1.5px dashed var(--line-strong);padding-top:12px}
 .chat-input input{flex:1;border:1.5px solid var(--line-strong);border-radius:var(--r-tile);
   background:var(--card-2);padding:10px 12px;outline:none}
